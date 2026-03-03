@@ -4,42 +4,62 @@ import TypingInput from "@/components/typingInput";
 import WordDisplay from "@/components/wordDisplay";
 import TimerComponent from "@/components/timerComponent";
 import timerHooks from "@/hooks/timerHooks";
+import Wpm from "@/components/wpm";
 
 export default function Home() {
-   const {
-    currentWord,
-    playerInput,
-    errors,
-    getplayerinput
-
-  } = useTypingGame()
 
   const {
     start,
-    time
+    time,
+    setTime,
   } = timerHooks()
 
+
+   const {
+    words,
+    wordIndex,
+    playerInput,
+    errors,
+    getplayerinput,
+    rightChar
+
+  } = useTypingGame({time})
+
+  
 
 
 
   return (
 
-         <div className='flex flex-col justify-center items-center'>
-          <div className=' bg-blue-400 mt-50'>
+         <div className='flex flex-col justify-center items-center '>
+          <div className='font-martian text-white mt-50 w-150 flex flex-col gap-2 '>
+
+            <Wpm
+            time={time}
+            rightWordIn60 = {rightChar.current}
+        
+
+            />
 
             <TimerComponent
             typeStart = {playerInput}
             start = {start}
             time = {time}
+            setTime={setTime}
 
             />
-          
 
-            <WordDisplay 
-            currentWord={currentWord}
-  playerInput={playerInput}
+
+          <div className="flex flex-col gap-7">
+               <WordDisplay 
+          words={words} 
+  playerInput={playerInput} 
+  wordIndex={wordIndex} 
   errors={errors}
             />
+
+
+           
 
             < TypingInput
             value = {playerInput}
@@ -47,6 +67,9 @@ export default function Home() {
 
             
             />
+            
+          </div>
+
           </div>
     </div>
   );

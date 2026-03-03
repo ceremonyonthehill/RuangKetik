@@ -1,20 +1,27 @@
-import { useState } from "react";
 import useTypingGame from "@/hooks/typinglogic";
+import timerHooks from "@/hooks/timerHooks";
+import { SetStateAction } from "react";
 
 type Props = {
-    rightWord : number
+    rightWordIn60 : number
+    time : number
+    setTime : (value: SetStateAction<number>) => void
+  
 }
 
-export default function wpm({rightWord}: Props){
-    const [displayWpm, setDisplayWpm] = useState(0)
-    const wpmUser = rightWord / 5
-    setDisplayWpm(wpmUser)
+export default function wpm({rightWordIn60, time, setTime}: Props){
 
-    return(
+    const wpmUser = Math.floor(rightWordIn60 / 5)
+
+if(time === 120){
+      return(
         <div>
-            {displayWpm}
+           wpm: {wpmUser}
         </div>
     )
+
+}
+  
 
   
 

@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 
-export default function timerHooks(limit = 60){
+
+
+export default function timerHooks(limit = 120){
     const [isActive, setIsActive] = useState(false)
     const [time, setTime] = useState(0)
 
@@ -24,7 +26,7 @@ setTime(t => {
 
   const start = () => setIsActive(true)
 
-  return { start, time }
+  return { start, time, setTime }
 
 }
 

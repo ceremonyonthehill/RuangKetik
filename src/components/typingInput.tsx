@@ -10,7 +10,7 @@ export default function typingInput({
 
     return(
         <div>
-              <input value={value} onChange={onChange} autoFocus className='max w-150 text-center mb-5'/>
+              <input value={value} onChange={onChange} autoFocus className='max w-150 text-center text-base focus:outline-none border'/>
         </div>
     )
 }
